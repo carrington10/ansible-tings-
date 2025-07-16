@@ -1,12 +1,12 @@
 ---
-- name: install chocolatey on windows hossts
+- name: install chocolatey on windows hosts
   hosts: windows
   gather_facts: no
 
   tasks:
     - name: Ensure chocolatey directory does not exists
       win_stat:  
-      path: C\ProgramData\chocolatey
+        path: C\ProgramData\chocolatey
       register: choco_dir
 
     - name: install chocolatey
