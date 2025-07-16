@@ -1,0 +1,28 @@
+---
+- name: install chocolatey on windows hossts
+  hosts: windows
+  gather_facts: no
+
+  tasks:
+    - name: Ensure chocolatey directory does not exists
+      win_stat:  
+      path: C\ProgramData\chocolatey
+      register: choco_dir
+
+    - name: install chocolatey
+      win_shell: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+      args:
+        creates: C:\ProgramData\chocolatey
+      when: not choco_data.stat.exists
+
+
+    - name: verify chocolatey install
+      win_command: choco --version
+      register: choco_version
+
+    - name: Display installed choco --version
+      debug:
+        msg: "Chocolatey version is {{ choco_version.stdout }}"
