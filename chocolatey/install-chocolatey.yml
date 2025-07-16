@@ -9,15 +9,14 @@
         path: C\ProgramData\chocolatey
       register: choco_dir
 
-    - name: install chocolatey
+    - name: Install chocolat1ey
       win_shell: |
         Set-ExecutionPolicy Bypass -Scope Process -Force
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
         iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
       args:
         creates: C:\ProgramData\chocolatey
-      when: not choco_data.stat.exists
-
+      when: not choco_dir.stat.exists
 
     - name: verify chocolatey install
       win_command: choco --version
