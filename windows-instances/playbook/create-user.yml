@@ -5,7 +5,7 @@
     - name: create local user
       win_user: 
        name: testAns
-       password: Test1234$
+       password: "Test1234$"
        state: present
-       group: 
+       groups: 
         - users
