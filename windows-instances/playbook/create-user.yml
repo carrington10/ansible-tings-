@@ -1,6 +1,6 @@
 ---
 - name: create a user
-  host: windows
+  hosts: windows
   tasks:
     - name: create local user
       win_user: 
