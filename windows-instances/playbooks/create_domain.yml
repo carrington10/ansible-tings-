@@ -12,8 +12,8 @@
         name: 
           - AD-Domain-Services
           - DNS
-      state: present
-      include_management_tools: yes
+        state: present
+        include_management_tools: yes
 
     - name: promote server to domain controller 
       ansible.windows.win_domain:
