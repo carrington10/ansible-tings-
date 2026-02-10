@@ -1,5 +1,5 @@
 - name: check computer name 
-  hosts: domain_controller
+  hosts: {{ target_host }}
   gather_facts: yes
 
   tasks:
