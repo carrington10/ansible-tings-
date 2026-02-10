@@ -1,0 +1,29 @@
+- name: Build active directory domain 
+  hosts: domain_controller
+  gather_facts: no
+
+  vars: 
+  domain_name: "kingdom.local"
+  safe_mode_password: "Test12345"
+
+  tasks:
+    - name: install active directory domain services 
+      ansible.windows.win_feature:
+        name: 
+          - AD-Domain-Services
+          - DNS
+      state: present
+      include_management_tools: yes
+
+    - name: promote server to domain controller 
+      ansible.windows.win_domain:
+        dns_domain_name: "{{ domain_name }}"
+        safe_mode_password: "{{ safe_mode_password }}"
+        install_dns: true
+      register: dc_promo
+    
+    - name: reboot server if needed
+      ansible.windows.win_reboot:
+        msg: "rebooting after active directory installation"
+        reboot_timeout: 600
+      when: dc_promo.reboot_required
