@@ -3,8 +3,8 @@
   gather_facts: no
 
   vars: 
-  dc_name: "kingdom.local"
-  safe_mode_password: "Test12345"
+    dc_name: "kingdom.local"
+    safe_mode_password: "Test12345"
 
   tasks:
     - name: install active directory domain services 
