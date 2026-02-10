@@ -1,11 +1,12 @@
 - name: check computer name 
-  hosts: {{ target_host }}
+  hosts: "{{ target_host }}""
   gather_facts: yes
 
   tasks:
     - name: Show computer name 
       debug:
         msg: "Computer name is {{ ansible_hostname }}"
+    
     - name: show domain name 
       debug:
         msg: "Domain Name is {{ansible_domain}}"
