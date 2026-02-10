@@ -1,0 +1,19 @@
+- name : Rename Windows server
+  hosts: domain_controller
+  gather_facts: no
+
+  vars:
+    new_hostname: "alpha"
+
+  tasks: 
+    - name: rename server 
+      ansible.windows.win_hostname:
+        name: "{{ new_hostname }}"
+      register: rename_result
+    
+    - name: reboot after rename 
+      ansible.windows.win_reboot:
+        msg: "rebooting after server is renamed"
+        reboot_timeout: 600
+
+      when: rename_result.reboot_required
