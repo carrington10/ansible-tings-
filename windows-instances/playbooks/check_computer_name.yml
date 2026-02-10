@@ -1,0 +1,8 @@
+- name: check computer name 
+  hosts: domain_controller
+  gather_facts: yes
+
+  tasks:
+    - name: Show computer name 
+      debug:
+        msg: "Computer name is {{ ansible_hostname }}"
