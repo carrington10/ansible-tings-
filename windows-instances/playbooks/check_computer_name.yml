@@ -1,5 +1,5 @@
 - name: check computer name 
-  hosts: "{{ target_host }}""
+  hosts: "{{ target_host }}"
   gather_facts: yes
 
   tasks:
