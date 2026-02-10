@@ -3,7 +3,7 @@
   gather_facts: no
 
   vars: 
-  domain_name: "kingdom.local"
+  dc_name: "kingdom.local"
   safe_mode_password: "Test12345"
 
   tasks:
@@ -17,7 +17,7 @@
 
     - name: promote server to domain controller 
       ansible.windows.win_domain:
-        dns_domain_name: "{{ domain_name }}"
+        dns_domain_name: "{{ dc_name }}"
         safe_mode_password: "{{ safe_mode_password }}"
         install_dns: true
       register: dc_promo
