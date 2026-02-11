@@ -1,0 +1,20 @@
+- name: cretae domain admin user
+  hosts: domain_controller
+  gather_facts: no
+
+  vars:
+    user: {{user}}
+    password: {{password}}
+    admin_groups: "Domain Admins"
+
+  tasks:
+    - name: create domain admin user
+      ansible.windows.win_domain_user:
+        name: "{{user}}"
+        password: "{{password}}"
+        domain_username: "KINGDOM\\Administartor"
+        domain_password:  {{ domain_password }}
+        state: present
+        groups: "{{admin_groups}}"
+
+        
