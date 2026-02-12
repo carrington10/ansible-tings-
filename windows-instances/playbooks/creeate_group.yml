@@ -1,0 +1,23 @@
+- name: create ad security group 
+  hosts: domain_controller
+  gather_facts: no 
+
+  vars:
+    domain_name: kingdom.local
+    group_name: "{{group_name}}"
+
+  tasks:
+    - name: create ad security group 
+      microsoft.ad.group:
+        name: "{{group_name}}"
+        state: present
+        scope: global
+        catagory: security
+        path: {{ group_ou }}
+        attribute:
+          description: "Group for {{ group_name }} created using ansible"
+        organizational_unit: "{{ group_ou }}"
+    
+    - name: debug group creation result
+      debug:
+        var: ad_group_result
