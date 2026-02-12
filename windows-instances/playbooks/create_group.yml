@@ -14,9 +14,7 @@
         scope: global
         catagory: security
         path: "{{group_ou}}"
-        attribute:
-          description: "Group for {{ group_name }} created using ansible"
-        organizational_unit: "{{ group_ou }}"
+        description: "Group for {{ group_name }} created using ansible"
     
     - name: debug group creation result
       debug:
