@@ -13,7 +13,6 @@
         state: present
         scope: global
         category: security
-        path: "{{group_ou}}"
         description: "Group for {{ group_name }} created using ansible"
     
     - name: debug group creation result
