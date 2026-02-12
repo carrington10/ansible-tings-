@@ -8,16 +8,14 @@
 
   tasks:
     - name: create ad security group 
-      microsoft.ad.group:
+      ansible.windows.win_domain_group:
         name: "{{group_name}}"
-        state: present
         scope: global
         catagory: security
-        path: "{{group_ou}}"
-        attribute:
-          description: "Group for {{ group_name }} created using ansible"
-        organizational_unit: "{{ group_ou }}"
+        path: "CN=Users,DC=kingdom,DC=local"
+        description: " this is a test to create a group using ansible"
+        state: present
     
     - name: debug group creation result
       debug:
-        var: ad_group_result
+        msg: "Group {{group_name}} has been created successfully"
