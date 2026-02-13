@@ -3,7 +3,7 @@
   gather_facts: no 
 
   vars:
-    domain_name: kingdom.local
+    domain_name: "{{ domain_name }}"
     group_name: "{{group_name}}"
 
   tasks:
