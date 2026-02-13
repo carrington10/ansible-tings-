@@ -8,11 +8,11 @@
   tasks:
     - name: add user to ad group 
       microsoft.ad.group:
-       name: "{group_name}}"
+       name: "{{group_name}}"
        members: 
          add:
             - "{{ user }}"
-      state: present 
+       state: present 
 
     - name: get membership of group 
       microsoft.ad.group:
