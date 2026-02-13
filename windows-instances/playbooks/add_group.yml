@@ -13,3 +13,9 @@
          add:
             - {{ user }}
       state: present 
+
+    - name: get membership of group 
+      microsoft.ad.group:
+        name: " {{group_name}}"
+        state: present
+        register: group_info
