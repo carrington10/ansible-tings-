@@ -1,0 +1,15 @@
+- name: add  user to ad group
+  hosts:: domain_controller
+  gather_facts: no 
+  vars:
+    domain_name: kingdom.local
+    group_name: "{{group_name}}"
+  
+  tasks:
+    - name: add user to ad group 
+      microsoft.ad.group:
+       name: "{group_name}}"
+       members: 
+         add:
+            - {{ user }}
+      state: present 
