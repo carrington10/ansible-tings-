@@ -1,5 +1,5 @@
 - name: add  user to ad group
-  hosts:: domain_controller
+  hosts: domain_controller
   gather_facts: no 
   vars:
     domain_name: kingdom.local
