@@ -2,6 +2,12 @@
   hosts: domain_controller
   gather_facts: no
 
+  vars:
+    base_ou: "OU=servers,DC=kingdom,DC=local,"
+    environment_groups:
+      - dev
+      - test
+      - prod
   tasks:
    - name: creating server in ou 
      microsoft.ad.ou:
@@ -15,3 +21,16 @@
      debug:
       msg: " was the ou created {{ ou_result }}"
      when: ou_result.changed
+
+   - name: creating environment groups in ou
+     microsoft.ad.group:
+      name: "{{ item }}"
+      scope: global
+      catagory: security
+      path: "{{ base_ou }}"
+      state: present
+      loop: "{{ environment_groups }}"
+
+
+
+  
