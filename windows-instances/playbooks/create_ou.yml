@@ -23,10 +23,8 @@
      when: ou_result.changed
 
    - name: creating environment groups in ou
-     microsoft.ad.group:
+     microsoft.ad.ou:
       name: "{{ item }}"
-      scope: global
-      category: security
       path: "{{ base_ou }}"
       state: present
      loop: "{{ environment_groups }}"
