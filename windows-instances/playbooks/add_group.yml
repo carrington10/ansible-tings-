@@ -13,3 +13,9 @@
           add:
               - "{{ user }}"
         state: present 
+      register: gp_result
+    
+    - name: verify name 
+      debug:
+        msg: " was {{ user}} added to  {{ group_name }}"
+      when: gp_result.changed
