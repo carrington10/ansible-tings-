@@ -3,7 +3,7 @@
   gather_facts: no
 
   vars:
-    base_ou: "OU=servers,DC=kingdom,DC=local,"
+    base_ou: "OU=servers,DC=kingdom,DC=local"
     environment_groups:
       - dev
       - test
@@ -26,7 +26,7 @@
      microsoft.ad.group:
       name: "{{ item }}"
       scope: global
-      catagory: security
+      category: security
       path: "{{ base_ou }}"
       state: present
      loop: "{{ environment_groups }}"
