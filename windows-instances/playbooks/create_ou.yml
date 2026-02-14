@@ -1,0 +1,17 @@
+- name: creates server ou and dev test and prod within the ou 
+  hosts: domain_controller
+  gather_facts: no
+
+  tasks:
+   - name: creating server in ou 
+     microsoft.ad.ou:
+      name: "servers"
+      path: "DC=kingdom,DC=local"
+      state: present
+      protect_from_deletion: false
+     register: ou_result
+    
+   - name: testing
+     debug:
+      msg: " was the ou created {{ ou_result }}"
+     when: ou_result.changed
