@@ -1,0 +1,16 @@
+- name: deploy and execute gpo script
+
+  gather_facts: no
+
+  tasks:
+    - name: creating gpo
+      ansible.windows.win_copy:
+        src: tasks/create_gpo.ps1
+        dest: C:\temp\create_gpo.ps1
+
+    - name: execute gpo script
+      ansible.windows.win_shell: |
+        powershell.exe -executionpolicy bypass '
+        -file C:\temp\create_gpo.ps1 '
+        -gponame " {{ gpo_name }}'
+        -targetou " {{ target_ou }}'
