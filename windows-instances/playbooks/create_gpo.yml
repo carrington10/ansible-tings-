@@ -1,5 +1,5 @@
 - name: deploy and execute gpo script
-
+  hosts: domain_controller
   gather_facts: no
 
   tasks:
