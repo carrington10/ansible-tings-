@@ -12,5 +12,5 @@
       ansible.windows.win_shell: |
         powershell.exe -executionpolicy bypass '
         -file C:\temp\create_gpo.ps1 '
-        -gponame " {{ gpo_name }}'
-        -targetou " {{ target_ou }}'
+        -gponame " {{ gpo_name }} "'
+        -targetou " {{ target_ou }}" '
