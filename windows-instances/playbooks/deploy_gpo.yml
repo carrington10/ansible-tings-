@@ -1,0 +1,7 @@
+- name: deploy gpo via role
+  hosts: domain_controller
+  gather_facts: no
+
+  roles:
+    - gpo_management
+  

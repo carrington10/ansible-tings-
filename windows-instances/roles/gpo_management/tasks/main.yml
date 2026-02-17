@@ -1,2 +1,23 @@
 ---
 # tasks file for roles/gpo_management
+- name: deploy and execute gpo script
+  hosts: domain_controller
+  gather_facts: no
+
+  tasks:
+    - name: ensure directory exists
+      ansible.windows.win_file:
+        path: C:\temp
+        state: directory
+ 
+    - name: creating gpo
+      ansible.windows.win_copy:
+        src: tasks/create_gpo.ps1
+        dest: C:\temp\create_gpo.ps1 
+
+    - name: execute gpo script
+      ansible.windows.win_command: >
+        powershell.exe -executionpolicy bypass 
+        -file C:\temp\create_gpo.ps1
+        -gponame " {{ gpo_name }} "
+        -targetou " {{ target_ou }}"
