@@ -7,7 +7,7 @@
  
     - name: creating gpo
       ansible.windows.win_copy:
-        src: tasks/create_gpo.ps1
+        src: create_gpo.ps1
         dest: C:\temp\create_gpo.ps1 
 
     - name: execute gpo script
