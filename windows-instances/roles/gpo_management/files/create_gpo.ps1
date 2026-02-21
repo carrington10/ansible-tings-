@@ -32,7 +32,7 @@ $linked = $false;
     }
     if (-not $linked){
         write-host "linking gpo to ou $targetOu"
-         new-gpolink -name $gponame -target $targetOu | out-null
+         new-gplink -name $gponame -target $targetOu | out-null
          $changed = $true;
     }
     else{
@@ -40,4 +40,4 @@ $linked = $false;
     }
 [PSCustomObject]@{
     changed = $changed
-} | convert-json -compress
+} | convertto-json -compress
