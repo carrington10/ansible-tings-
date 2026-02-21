@@ -32,7 +32,7 @@ $linked = $false;
     }
     if (-not $linked){
         write-host "linking gpo to ou $targetOu"
-         new-grolink -name $gponame -target $targetOu | out-null
+         new-gpolink -name $gponame -target $targetOu | out-null
          $changed = $true;
     }
     else{
