@@ -40,4 +40,4 @@ $linked = $false;
     }
 [PSCustomObject]@{
     changed = $changed
-}] | convert-json -compress
+} | convert-json -compress
