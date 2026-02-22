@@ -1,0 +1,20 @@
+stages: 
+  - lint
+  - validate
+
+image: python:3.9
+
+before_script:
+  - pip install ansible-lint
+  - ansible --version
+  - ansible-lint --version
+
+ansible-lint:
+  stage: lint
+  script:
+  - ansible-lint windowsinstances/roles/gpo_management/tasks/main.yml
+  - ansible-lint windowsinstances/playbooks/create-user.yml
+ansible-syntx-check:
+  stage: validate
+  script:
+  - ansible-playbook windowsinstances/playbooks/create-user.yml --syntax-check -i inventory.ini
