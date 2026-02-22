@@ -11,10 +11,10 @@
         dest: C:\temp\create_gpo.ps1 
 
     - name: execute gpo script
-      ansible.windows.win_command: >
-        powershell.exe -executionpolicy bypass 
-        -file C:\temp\create_gpo.ps1
-        -gponame "{{ gpo_name }}"
-        -targetou "{{ target_ou }}"
+      ansible.windows.win_powershell: 
+        script: | 
+          & "C:\Temp\create_gpo.ps1" `
+          -gponame "{{ gpo_name }}" `
+          -targetou "{{ target_ou }}"
       register: gpo_result
       changed_when: (gpo_result.stdout | from_json).changed
