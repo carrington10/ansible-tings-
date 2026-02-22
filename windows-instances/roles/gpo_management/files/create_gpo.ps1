@@ -20,7 +20,7 @@ $gpo = get-gpo -name $gponame -erroraction silentlycontinue
         write-host "gpo already existts."
     }
 # link gpo if not already linked 
-$inheritance =  Get-GPInheritance -target $targetOu
+$inheritance =  Get-GPInheritance -target $targetOou
 $linked = $false;
     if ($inheritance.GpoLinks) {
         foreach ($link in $inheritance.GpoLinks) {
@@ -31,8 +31,8 @@ $linked = $false;
         }
     }
     if (-not $linked){
-        write-host "linking gpo to ou $targetOu"
-         new-gplink -name $gponame -target $targetOu | out-null
+        write-host "linking gpo to ou $targetuu"
+         new-gplink -name $gponame -target $targetou | out-null
          $changed = $true;
     }
     else{
