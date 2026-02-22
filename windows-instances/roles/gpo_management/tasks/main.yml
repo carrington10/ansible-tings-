@@ -15,6 +15,6 @@
         powershell.exe -executionpolicy bypass 
         -file C:\temp\create_gpo.ps1
         -gponame " {{ gpo_name }} "
-        -targetou " {{ target_ou }}"
+        -targetOu " {{ target_ou }}"
       register: gpo_result
       changed_when: (gpo_result.stdout | from_json).changed
