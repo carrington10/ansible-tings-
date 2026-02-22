@@ -3,7 +3,7 @@
 
 param (
     [string] $gponame,
-    [string] $targetOu
+    [string] $targetou
 
 )
 Import-Module grouppolicy
