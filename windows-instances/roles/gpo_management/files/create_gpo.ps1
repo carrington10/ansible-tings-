@@ -1,4 +1,3 @@
-
 # powershell script to create a gpo and linked it to a given ou
 
 param (
@@ -20,7 +19,7 @@ $gpo = get-gpo -name $gponame -erroraction silentlycontinue
         write-host "gpo already existts."
     }
 # link gpo if not already linked 
-$inheritance =  Get-GPInheritance -target $targetOou
+$inheritance =  Get-GPInheritance -target $targetou
 $linked = $false;
     if ($inheritance.GpoLinks) {
         foreach ($link in $inheritance.GpoLinks) {
