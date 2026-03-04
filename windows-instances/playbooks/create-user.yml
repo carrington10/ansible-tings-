@@ -5,7 +5,7 @@
   
   tasks:
     - name: create user in domain
-      microssoft.ad.user:
+      microsoft.ad.user:
         identity_type: user
         first_name: "{{ user }}"
         last_name: "smith"
