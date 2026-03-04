@@ -6,10 +6,9 @@
   tasks:
     - name: create user in domain
       microsoft.ad.user:
-        identity_type: user
+        identity: user
         firstname: "{{ user }}"
         lastname: "smith"
-        groups: "{{ group_name }}"
         name: "{{ user }}"
         password: "{{ password }}"
         state: present
