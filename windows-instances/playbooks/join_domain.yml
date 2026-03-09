@@ -1,0 +1,17 @@
+---
+- name: domain
+  hosts: window
+  gather_facts: no
+  vars:
+    domain: "kindom.local"
+
+  tasks:
+    - name: join domain
+      microsoft.ad.membership:
+      dns_domain_name: "{{ domain }}"
+      domain_admin_user: "{{ user }}"
+      domain_admin_password: "{{ password }}"
+      state: present
+      rebooot: true
+      
+
