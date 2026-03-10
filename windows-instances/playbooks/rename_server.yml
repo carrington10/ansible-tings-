@@ -3,7 +3,7 @@
   gather_facts: no
 
   vars:
-    new_hostname: "alpha"
+    new_hostname: {{ newname}}
 
   tasks: 
     - name: rename server 
