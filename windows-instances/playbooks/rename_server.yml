@@ -1,9 +1,9 @@
 - name : Rename Windows server
-  hosts: domain_controller
+  hosts: "{{ target_host }}"
   gather_facts: no
 
   vars:
-    new_hostname: {{ newname}}
+    new_hostname: "{{ newname }}"
 
   tasks: 
     - name: rename server 
