@@ -1,6 +1,6 @@
 ---
 - name: domain
-  hosts: window
+  hosts: "{{ target_host }}"
   gather_facts: no
   vars:
     domain: "kindom.local"
