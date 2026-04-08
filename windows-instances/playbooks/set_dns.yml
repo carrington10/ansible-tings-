@@ -13,6 +13,7 @@
           Select-Object -First 1 -ExpandProperty InterfaceAlias
         write-host $iface
       register: interface_result
+      
     - name: Set dns server
       ansible.windows.win_dns_client:
         adapter_names: "{{ interface_result.stdout | trim}}"
