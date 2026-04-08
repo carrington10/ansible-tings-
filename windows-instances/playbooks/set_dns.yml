@@ -7,7 +7,7 @@
 
   tasks:
     - name : get ethernet name 
-      ansible.windows.shell: |
+      ansible.windows.win_shell: |
        $iface = Get-NetIPConfiguration |
                  Where-Object { $_.IPv4DefaultGateway -ne $null } |
                  Select-Object -First 1 -ExpandProperty InterfaceAlias
