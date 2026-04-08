@@ -3,17 +3,18 @@
   gather_facts: no
 
   vars:
-    dns_server: " {{ dns_server}}"
+    dns_server: "{{ dns_server}}"
 
   tasks:
     - name : get ethernet name 
       ansible.windows.win_shell: |
        $iface = Get-NetIPConfiguration |
-                 Where-Object { $_.IPv4DefaultGateway -ne $null } |
-                 Select-Object -First 1 -ExpandProperty InterfaceAlias
+          Where-Object { $_.IPv4DefaultGateway -ne $null } |
+          Select-Object -First 1 -ExpandProperty InterfaceAlias
         write-host $iface
       register: interface_result
-    - name: Set dns 
+    - name: Set dns server
       ansible.windows.win_dns_client:
-        -InterfaceAlias: "{{ interface_result.stdout }}"
-        -ServerAddresses: "{{ dns_server }}"
+        adapter_names: "{{ interface_result.stdout | trim}}"
+        dns_servers: 
+          - "{{ dns_server }}"
