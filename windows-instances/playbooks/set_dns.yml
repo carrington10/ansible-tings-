@@ -1,5 +1,5 @@
 - name: set dns
-  hpsts: {{ target_hosts }}
+  hosts: "{{ target_hosts }}"
   gather_facts: no
 
   vars:
