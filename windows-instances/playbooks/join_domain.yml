@@ -12,6 +12,6 @@
         domain_admin_user: "{{ user }}"
         domain_admin_password: "{{ password }}"
         state: present
-        rebooot: true
+        reboot: true
       
 
