@@ -3,7 +3,7 @@
   hosts: "{{ target_host }}"
   gather_facts: no
   vars:
-    domain: "kindgom.local"
+    domain: "kingdom.local"
 
   tasks:
     - name: join domain
