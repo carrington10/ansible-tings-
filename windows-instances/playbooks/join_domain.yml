@@ -11,7 +11,7 @@
         dns_domain_name: "{{ domain }}"
         domain_admin_user: "{{ user }}"
         domain_admin_password: "{{ password }}"
-        state: present
+        state: domain
         reboot: true
       
 

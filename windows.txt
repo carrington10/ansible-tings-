@@ -1,0 +1,25 @@
+<powershell>
+
+# Enable WinRM
+winrm quickconfig -force
+Enable-PSRemoting -Force
+
+# Allow Basic Auth (lab)
+Set-Item WSMan:\localhost\Service\Auth\Basic $true
+Set-Item WSMan:\localhost\Service\AllowUnencrypted $true
+
+# Open WinRM firewall
+Enable-NetFirewallRule -DisplayGroup "Windows Remote Management"
+
+# Allow ICMP (ping)
+Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In
+
+# Ensure WinRM service is running
+Set-Service -Name WinRM -StartupType Automatic
+Start-Service WinRM
+New-NetFirewallRule `
+  -DisplayName "Allow WinRM 5985" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 5985 `
+  -Action Allow
