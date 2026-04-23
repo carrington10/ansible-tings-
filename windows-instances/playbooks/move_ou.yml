@@ -2,14 +2,13 @@
 - name: move computer to ou
   hosts: domain_controller
   vars: 
-    computer: "{{ computer }}"
     ev: "{{ ev }}"
   gather_facts: false
 
   tasks:
     -  name: move computer to test ou 
        microsoft.ad.computer:
-          identity: "{{ computer }}"
+          identity: "{{ computer | regex_replace('\\$$', '') }}"
           name: "{{ computer }}"
           path: "OU=test,OU=servers,DC=kingdom,DC=local"
           state: present
@@ -18,7 +17,7 @@
     
     - name: move compuer to dev ou 
       microsoft.ad.computer:
-          identity: "{{ computer }}"
+          identity: "{{ computer | regex_replace('\\$$', '') }}"
           name: "{{ computer }}"
           path: "OU=dev,OU=servers,DC=kingdom,DC=local"
           state: present
@@ -26,7 +25,7 @@
 
     - name: move computer to prod ou 
       microsoft.ad.computer:
-          identity: "{{ computer }}"
+          identity: "{{{ computer | regex_replace('\\$$', '') }}"
           name: "{{ computer }}"
           path: "OU=prod,OU=servers,DC=kingdom,DC=local"
           state: present
