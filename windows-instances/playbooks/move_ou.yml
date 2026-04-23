@@ -1,6 +1,6 @@
 ---
 - name: move computer to ou
-  hosts: "domain_controller"
+  hosts: domain_controller
   vars: 
     computer: "{{ computer }}"
     ev: "{{ ev }}"
@@ -9,21 +9,22 @@
   tasks:
     -  name: move computer to test ou 
        microsoft.ad.computer:
-          name: "{{ computer }}"
+          identity: "{{ computer }}"
           path: "OU=test,OU=servers,DC=kingdom,DC=local"
           state: present
+
        when: ev == "test"
     
     - name: move compuer to dev ou 
       microsoft.ad.computer:
-          name: "{{ computer }}"
+          identity: "{{ computer }}"
           path: "OU=dev,OU=servers,DC=kingdom,DC=local"
           state: present
       when: ev == "dev"
 
     - name: move computer to prod ou 
       microsoft.ad.computer:
-          name: "{{ computer }}"
+          identity: "{{ computer }}"
           path: "OU=prod,OU=servers,DC=kingdom,DC=local"
           state: present
       when: ev == "prod"
