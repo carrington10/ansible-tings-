@@ -2,7 +2,7 @@
 - name: move computer to ou
   hosts: "domain_controller"
   vars: 
-    computer: "{{ }}"
+    computer: "{{ computer}}"
     environment: "{{ environment }}"
   gather_facts: false
 
