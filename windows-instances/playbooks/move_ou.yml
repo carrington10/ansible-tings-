@@ -10,6 +10,7 @@
     -  name: move computer to test ou 
        microsoft.ad.computer:
           identity: "{{ computer }}"
+          name: "{{ computer }}"
           path: "OU=test,OU=servers,DC=kingdom,DC=local"
           state: present
 
@@ -18,12 +19,15 @@
     - name: move compuer to dev ou 
       microsoft.ad.computer:
           identity: "{{ computer }}"
+          name: "{{ computer }}"
+          path: "OU=dev,OU=servers,DC=kingdom,DC=local"
           state: present
       when: ev == "dev"
 
     - name: move computer to prod ou 
       microsoft.ad.computer:
           identity: "{{ computer }}"
+          name: "{{ computer }}"
           path: "OU=prod,OU=servers,DC=kingdom,DC=local"
           state: present
       when: ev == "prod"
