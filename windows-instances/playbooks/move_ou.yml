@@ -12,7 +12,6 @@
           identity: "{{ computer }}"
           path: "OU=test,OU=servers,DC=kingdom,DC=local"
           state: present
-          msg: "moving computer {{ computer }} to test ou"
        when: ev == "test"
     
     - name: move compuer to dev ou 
@@ -20,7 +19,6 @@
           identity: "{{ computer }}"
           path: "OU=dev,OU=servers,DC=kingdom,DC=local"
           state: present
-          msg: "moving computer {{ computer }} to dev ou"
       when: ev == "dev"
 
     - name: move computer to prod ou 
@@ -28,7 +26,6 @@
           identity: "{{ computer }}"
           path: "OU=prod,OU=servers,DC=kingdom,DC=local"
           state: present
-          msg: "moving computer {{ computer }} to prod ou"
       when: ev == "prod"
 
 
