@@ -1,0 +1,35 @@
+---
+- name: move computer 
+  hosts: "domain_controller"
+  vars: 
+    computer: "{{ }}"
+    environment: "{{ environment }}"
+  gather_facts: false
+
+  tasks:
+    -  name: move computer to test ou 
+       microsoft.ad.computer:
+          identity: "{{ computer }}"
+          path: "OU=test,OU=servers,DC=kingdom,DC=local"
+          state: present
+          msg: "moving computer {{ computer }} to test ou"
+       when: environment == "test"
+    
+    - name: move compuer to dev ou 
+      microsoft.ad.computer:
+          identity: "{{ computer }}"
+          path: "OU=dev,OU=servers,DC=kingdom,DC=local"
+          state: present
+          msg: "moving computer {{ computer }} to dev ou"
+      when: environment == "dev"
+
+    - name: move computer to prod ou 
+      microsoft.ad.computer:
+          identity: "{{ computer }}"
+          path: "OU=prod,OU=servers,DC=kingdom,DC=local"
+          state: present
+          msg: "moving computer {{ computer }} to prod ou"
+      when: environment == "prod"
+
+
+
