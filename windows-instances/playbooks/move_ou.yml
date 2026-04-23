@@ -1,5 +1,5 @@
 ---
-- name: move computer 
+- name: move computer to ou
   hosts: "domain_controller"
   vars: 
     computer: "{{ }}"
