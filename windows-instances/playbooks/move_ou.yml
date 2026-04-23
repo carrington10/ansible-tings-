@@ -3,7 +3,7 @@
   hosts: "domain_controller"
   vars: 
     computer: "{{ computer }}"
-    environment: "{{ environment }}"
+    ev: "{{ ev }}"
   gather_facts: false
 
   tasks:
@@ -13,7 +13,7 @@
           path: "OU=test,OU=servers,DC=kingdom,DC=local"
           state: present
           msg: "moving computer {{ computer }} to test ou"
-       when: environment == "test"
+       when: ev == "test"
     
     - name: move compuer to dev ou 
       microsoft.ad.computer:
@@ -21,7 +21,7 @@
           path: "OU=dev,OU=servers,DC=kingdom,DC=local"
           state: present
           msg: "moving computer {{ computer }} to dev ou"
-      when: environment == "dev"
+      when: ev == "dev"
 
     - name: move computer to prod ou 
       microsoft.ad.computer:
@@ -29,7 +29,7 @@
           path: "OU=prod,OU=servers,DC=kingdom,DC=local"
           state: present
           msg: "moving computer {{ computer }} to prod ou"
-      when: environment == "prod"
+      when: ev == "prod"
 
 
 
