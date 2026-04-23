@@ -17,8 +17,7 @@
     
     - name: move compuer to dev ou 
       microsoft.ad.computer:
-          name: "{{ computer }}"
-          path: "OU=dev,OU=servers,DC=kingdom,DC=local"
+          identity: "{{ computer }}"
           state: present
       when: ev == "dev"
 
