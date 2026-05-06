@@ -11,7 +11,7 @@
         dns_domain_name: "{{ domain }}"
         domain_admin_user: "{{ user }}"
         domain_admin_password: "{{ password }}"
-        domain_ou: "OU=servers,OU=dev,OU=computers,DC=kingdom,DC=local"
+        domain_ou: " OU=test,OU=servers,DC=kingdom,DC=local"
         state: domain
         reboot: true
       
