@@ -3,7 +3,13 @@
   gather_facts: no
 
   tasks:
-    - name: create shared folder
+    - name: create folder share
+      ansible.windows.win_file:
+       path: "{{ share_path }}"
+       state: directory
+       register: folder_created
+
+    - name: modify permissions for shared folder
       ansible.windows.win_share:
         name: "{{ share_name }}"
         desciription: "shared folder for staffing department"
@@ -11,3 +17,4 @@
         list: true
         full: Administrators
         read: Users
+        when: folder_created.changed
