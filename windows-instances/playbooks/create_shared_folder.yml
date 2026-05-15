@@ -1,0 +1,13 @@
+- name: create shared folder
+  hosts: "{{ target_host }}"
+  gather_facts: no
+
+  tasks:
+    - name: create shared folder
+      ansible.windows.win_share:
+        name: "{{ share_name}}"
+        desciription: "shared folder for staffing department"
+        path: "{{ share_path }}"
+        list: true
+        full: Administartors
+        read: Users
