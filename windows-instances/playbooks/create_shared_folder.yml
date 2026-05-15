@@ -15,6 +15,6 @@
         desciription: "shared folder for staffing department"
         path: "{{ share_path }}"
         list: true
-        full: Administrators
+        full: Administrators, staff
         read: Users
         when: folder_created.changed
