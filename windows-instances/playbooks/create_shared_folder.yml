@@ -9,6 +9,13 @@
        state: directory
        register: folder_created
 
+    - name: disable inheritance
+      ansible.windows.win_acl_inheritance:
+        path: "{{ share_path }}"
+        state: disabled
+        when: folder_created.changed
+        register: inheritance_disabled
+
     - name: set permissions to folder
       ansible.windows.win_acl:
         name: "{{ share_name }}"
@@ -18,10 +25,6 @@
         type: allow
         state: present
         when: folder_created.changed
-        register: acl_set
+        register: inheritance_disabled.changed
 
-    - name: disable inheritance
-      ansible.windows.win_acl_inheritance:
-        path: "{{ share_path }}"
-        state: disabled
-        when: acl_set.changed
+
