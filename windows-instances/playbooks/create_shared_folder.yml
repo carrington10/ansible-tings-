@@ -7,14 +7,15 @@
       ansible.windows.win_file:
        path: "{{ share_path }}"
        state: directory
-       register: folder_created
+      register: folder_created
 
     - name: disable inheritance
       ansible.windows.win_acl_inheritance:
         path: "{{ share_path }}"
         state: disabled
-      when: folder_created.changed
+        recorganize: yes
       register: inheritance_disabled
+      when: folder_created.changed
 
     - name: set permissions to folder
       ansible.windows.win_acl:
