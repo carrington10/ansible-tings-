@@ -13,7 +13,6 @@
       ansible.windows.win_acl_inheritance:
         path: "{{ share_path }}"
         state: absent
-        recorganize: true
       register: inheritance_disabled
       when: folder_created.changed
 
