@@ -9,13 +9,12 @@
        state: directory
        register: folder_created
 
-    - name: modify permissions for shared folder
-      ansible.windows.win_share:
+    - name: set permissions to folder
+      ansible.windows.win_acl:
         name: "{{ share_name }}"
-        desciription: "shared folder for staffing department"
         path: "{{ share_path }}"
-        list: true
-        full: 
-            Administrators,kingdom\staff
-        read: Users
+        user: "kingdom\staff"
+        rights: "fullcontrol"
+        type: allow
+        state: present
         when: folder_created.changed
