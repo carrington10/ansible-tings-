@@ -16,7 +16,6 @@
         path: "{{ share_path }}"
         list: true
         full: 
-            - Administrators
-            - "kingdom\\staff"
+            -Administrators,kingdom.local\staff
         read: Users
         when: folder_created.changed
