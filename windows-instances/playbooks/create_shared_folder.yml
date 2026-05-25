@@ -22,5 +22,6 @@
     - name: disable inheritance
       ansible.windows.win_acl_inheritance:
         path: "{{ share_path }}"
-        state: "absent"
+        state: disabled
+        reissue: true
         when: folder_created.changed
