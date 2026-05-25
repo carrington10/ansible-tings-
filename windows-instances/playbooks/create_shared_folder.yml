@@ -12,8 +12,8 @@
     - name: disable inheritance
       ansible.windows.win_acl_inheritance:
         path: "{{ share_path }}"
-        state: disabled
-        recorganize: yes
+        state: absent
+        recorganize: true
       register: inheritance_disabled
       when: folder_created.changed
 
