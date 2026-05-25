@@ -24,7 +24,7 @@
         rights: "fullcontrol"
         type: allow
         state: present
-        when: inheritance_disabled.changed
+      when: inheritance_disabled.changed
 
 
 
