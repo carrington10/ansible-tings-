@@ -18,3 +18,9 @@
         type: allow
         state: present
         when: folder_created.changed
+
+    - name: disable inheritance
+      ansible.windows.win_acl_inheritance:
+        path: "{{ share_path }}"
+        state: disabled
+        when: folder_created.changed
