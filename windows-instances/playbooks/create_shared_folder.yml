@@ -27,6 +27,7 @@
       loop:
         - kingdom\staff
         - administrators
+        - system
       when: folder_created.changed
 
 
