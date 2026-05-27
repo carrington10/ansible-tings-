@@ -3,6 +3,11 @@
   gather_facts: no
 
   tasks:
+    - name: create shares folder
+      ansible.windows.win_file:
+        path: "D:\\shares"
+        state: directory
+
     - name: create folder share
       ansible.windows.win_file:
        path: "{{ share_path }}"
