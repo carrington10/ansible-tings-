@@ -47,3 +47,15 @@
           state: present
       when: permissions_set.changed
 
+    - name: install dfs
+      ansible.windows.win_feature:
+          name: 
+            - FS-DFS-Namespace
+            - FS-DFS-Replication
+      register: dfs_installed
+
+    - name: reboot if required after dfs installation
+      ansible.windows.win_reboot:
+        msg: "rebooting after dfs installation"
+      when: dfs_installed.reboot_required
+
