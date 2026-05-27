@@ -20,11 +20,14 @@
       ansible.windows.win_acl:
         name: "{{ share_name }}"
         path: "{{ share_path }}"
-        user: kingdom\staff
+        user: {{ item }}
         rights: "fullcontrol"
         type: allow
         state: present
-      when: inheritance_disabled.changed
+        loop:
+          - kingdom\staff
+          - administartors
+      when: folder_created.changed
 
 
 
