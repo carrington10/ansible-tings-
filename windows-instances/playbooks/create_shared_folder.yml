@@ -42,7 +42,8 @@
           path: "{{ share_path }}"
           description: "staffing folder shared drive"
           list: true
-          full: administrators,kindgom\staff
+          full: administrators
+          change: Authenticated Users
           state: present
       when: permissions_set.changed
 
