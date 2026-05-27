@@ -52,6 +52,8 @@
           name: 
             - FS-DFS-Namespace
             - FS-DFS-Replication
+          state: present
+          include_sub_features: yes
       register: dfs_installed
 
     - name: reboot if required after dfs installation
