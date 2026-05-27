@@ -26,7 +26,7 @@
         state: present
       loop:
         - kingdom\staff
-        - administartors
+        - administrators
       when: folder_created.changed
 
 
