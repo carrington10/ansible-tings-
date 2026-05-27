@@ -28,7 +28,16 @@
         - kingdom\staff
         - administrators
         - system
+      register: permissions_set
       when: folder_created.changed
 
-
+    - name: create smb network share
+      ansible.windows.win_share:
+          name: "{{ share_name }}"
+          path: "{{ share_path }}"
+          description: "staffing folder shared drive"
+          list: true
+          full: administrators,kindgom\staff
+          state: present
+      when: permissions_set.changed
 
