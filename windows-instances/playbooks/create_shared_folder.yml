@@ -24,9 +24,9 @@
         rights: "fullcontrol"
         type: allow
         state: present
-        loop:
-          - kingdom\staff
-          - administartors
+      loop:
+        - kingdom\staff
+        - administartors
       when: folder_created.changed
 
 
