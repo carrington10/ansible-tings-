@@ -1,63 +1,7 @@
 - name: create shared folder
   hosts: "{{ target_host }}"
   gather_facts: no
-
-  tasks:
-    - name: create shares folder
-      ansible.windows.win_file:
-        path: "D:\\shares"
-        state: directory
-
-    - name: create folder share
-      ansible.windows.win_file:
-       path: "{{ share_path }}"
-       state: directory
-      register: folder_created
-
-    - name: disable inheritance
-      ansible.windows.win_acl_inheritance:
-        path: "{{ share_path }}"
-        state: absent
-      register: inheritance_disabled
-      when: folder_created.changed
-
-    - name: set permissions to folder
-      ansible.windows.win_acl:
-        name: "{{ share_name }}"
-        path: "{{ share_path }}"
-        user: "{{ item }}"
-        rights: "fullcontrol"
-        type: allow
-        state: present
-      loop:
-        - kingdom\staff
-        - administrators
-        - system
-      register: permissions_set
-      when: folder_created.changed
-
-    - name: create smb network share
-      ansible.windows.win_share:
-          name: "{{ share_name }}"
-          path: "{{ share_path }}"
-          description: "staffing folder shared drive"
-          list: true
-          full: administrators
-          change: Authenticated Users
-          state: present
-      when: permissions_set.changed
-
-    - name: install dfs
-      ansible.windows.win_feature:
-          name: 
-            - FS-DFS-Namespace
-            - FS-DFS-Replication
-          state: present
-          include_sub_features: yes
-      register: dfs_installed
-
-    - name: reboot if required after dfs installation
-      ansible.windows.win_reboot:
-        msg: "rebooting after dfs installation"
-      when: dfs_installed.reboot_required
+  
+  roles:
+    - sharedfs
 
