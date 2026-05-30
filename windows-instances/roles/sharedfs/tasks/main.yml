@@ -2,7 +2,7 @@
 # tasks file for sharedfs
 - name: ensure directory exists
   ansible.windows.win_file:
-     path: "{{ shares_path }}"
+     path: "{{ share_path }}"
      state: directory
   
 - name: create share folder
