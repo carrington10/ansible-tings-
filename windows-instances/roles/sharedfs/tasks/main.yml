@@ -1,2 +1,48 @@
 ---
 # tasks file for sharedfs
+- name: ensure directory exists
+  ansible.windows.win_file:
+     path: {{ "shares_path" }}
+     state: directory
+  
+- name: create share folder
+  ansible.windows.win_file:
+      path: "{{ share_folder}}"
+      state: directory
+
+- name: disable inheritance
+  ansible.windows.win_acl_inheritance:
+    path: "{{ share_path }}"
+    state: absent
+
+- name: set permissions to folder
+  ansible.windows.win_acl:
+    name: "{{ share_name }}"
+    path: "{{ share_path }}"
+    user: "{{ item }}"
+    rights: "fullcontrol"
+    type: allow
+    state: present
+  loop:
+    - kingdom\staff
+    - administrators
+    - system
+  register: permissions_set
+
+- name: create smb network share
+  ansible.windows.win_share:
+      name: "{{ share_name }}"
+      path: "{{ share_path }}"
+      description: "staffing folder shared drive"
+      list: true
+      full: administrators
+      change: Authenticated Users
+
+- name: install dfs
+  ansible.windows.win_feature:
+      name: 
+        - FS-DFS-Namespace
+        - FS-DFS-Replication
+      state: present
+      include_sub_features: yes
+  register: dfs_installed

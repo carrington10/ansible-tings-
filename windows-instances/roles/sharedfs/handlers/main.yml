@@ -1,2 +1,6 @@
 ---
 # handlers file for sharedfs
+- name: reboot server if required 
+  ansible.windows.win_reboot:
+    msg: rebooting after dfs installation
+  when: dfs_installed.reboot_required

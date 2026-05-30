@@ -1,2 +1,3 @@
 ---
 # vars file for sharedfs
+shares_path: "D:\\shares"
