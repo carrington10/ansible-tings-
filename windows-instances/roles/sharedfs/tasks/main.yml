@@ -46,3 +46,4 @@
       state: present
       include_sub_features: yes
   register: dfs_installed
+  notify: reboot server if required
